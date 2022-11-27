@@ -7,7 +7,7 @@ repos:
     -   id:  trailing-whitespace
     -   id:  check-json
     -   id:  check-merge-conflict
-    -   id: detect-aws-credentials
+    -   id:  detect-aws-credentials
         args: [--allow-missing-credentials]
 -   repo: https://github.com/radix-ai/auto-smart-commit
     rev: v1.0.2 # https://github.com/radix-ai/auto-smart-commit | pre-commit install --hook-type prepare-commit-msg
