@@ -23,3 +23,46 @@ brew install pre-commit
 ```
 conda install -c conda-forge pre-commit
 ```
+`.env` example for GitGuardian API key
+```
+GITGUARDIAN_API_KEY=<api key>
+```
+`linter_values.yaml` example required for Helm Docs
+```
+dockerRegistry: ".dkr.ecr.eu-central-1.amazonaws.com"
+accountPrefix:
+regionShort:
+blueGreenValue: blue
+
+clusterNameTemplate: |-
+  {{ print .Values.regionShort "-" | trimPrefix "ec1-" }}{{ include "account.name" . }}-{{ .Values.blueGreenValue }}
+accounts:
+  infra:
+    id: ""
+  nonprod:
+    id: ""
+  preprod:
+    id: ""
+  prod:
+    id: ""
+  common:
+    id: ""
+
+stages:
+  test: ""
+    account: nonprod
+  playground:
+    account: infra
+
+vault:
+  address:
+
+filebeat:
+  image:
+    registry:  .dkr.ecr.eu-central-1.amazonaws.com
+    repository: tools/filebeat
+    tag: 7.12.1
+
+dynatrace:
+  groupnamePrefix:
+```
