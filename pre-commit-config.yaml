@@ -1,0 +1,41 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0 #https://pre-commit.com/
+    hooks:
+    -   id:  check-xml
+    -   id:  end-of-file-fixer
+    -   id:  trailing-whitespace
+    -   id:  check-json
+    -   id:  check-merge-conflict
+    -   id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+-   repo: https://github.com/radix-ai/auto-smart-commit
+    rev: v1.0.2 # https://github.com/radix-ai/auto-smart-commit | pre-commit install --hook-type prepare-commit-msg
+    hooks:
+    -   id: auto-smart-commit
+-   repo: https://github.com/gitguardian/ggshield # add your api key to your .env file | GITGUARDIAN_API_KEY=
+    rev: v1.14.1 # https://docs.gitguardian.com/ggshield-docs/integrations/git-hooks/pre-commit
+    hooks:
+    -   id: ggshield
+        language_version: python3
+        stages: [commit]
+-   repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.77.0 # https://github.com/antonbabenko/pre-commit-terraform/releases
+    hooks:
+    -   id: terraform_docs
+        args:
+        - --hook-config=--path-to-file=TF-README.md     # Valid UNIX path. I.e. ../TFDOC.md or docs/README.md etc.
+        - --hook-config=--add-to-existing-file=true     # Boolean. true or false
+        - --hook-config=--create-file-if-not-exist=true # Boolean. true or false
+-   repo: https://github.com/norwoodj/helm-docs
+    rev: v1.11.0 # https://github.com/norwoodj/helm-docs | You will need to configure a linter_values.yaml file
+    hooks:
+    -   id: helm-docs
+        args:
+            # Make the tool search for charts only under the `example-charts` directory
+            - --chart-search-root=.
+            # The `./` makes it relative to the chart-search-root set above
+            - --template-files=./_templates.gotmpl
+            # Repeating the flag adds this to the list, now [./_templates.gotmpl, README.md.gotmpl]
+            # A base filename makes it relative to each chart directory found
+            - --template-files=README.md.gotmpl
