@@ -25,7 +25,7 @@ conda install -c conda-forge pre-commit
 ```
 `.env` example for GitGuardian API key
 ```
-GITGUARDIAN_API_KEY=<api key>
+GITGUARDIAN_API_KEY=<crazy long string of numbers and letters>
 ```
 `linter_values.yaml` example required for Helm Docs
 ```
