@@ -22,11 +22,27 @@ repos:
 -   repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.77.0 # https://github.com/antonbabenko/pre-commit-terraform/releases
     hooks:
+    -   id: terraform_checkov
     -   id: terraform_docs
+    -   id: terraform_fmt
+    -   id: terraform_tflint
+    -   id: terraform_tfsec
+    -   id: terraform_validate
+    -   id: terrascan
+    -   id: tfupdate
+    -   id: infracost_breakdown
         args:
+        - --args=--path=./
+        - --args=--format=html
+        - --args=--out-file infracost_report.html
+        - --hook-config='.totalHourlyCost|tonumber > 0.1'
+        - --hook-config='.totalHourlyCost|tonumber > 1'
+        - --hook-config='.projects[].diff.totalMonthlyCost|tonumber != 10000'
+        - --hook-config='.currency == "EUR"'
         - --hook-config=--path-to-file=TF-README.md     # Valid UNIX path. I.e. ../TFDOC.md or docs/README.md etc.
         - --hook-config=--add-to-existing-file=true     # Boolean. true or false
         - --hook-config=--create-file-if-not-exist=true # Boolean. true or false
+        verbose: true # always show costs        args:
 -   repo: https://github.com/norwoodj/helm-docs
     rev: v1.11.0 # https://github.com/norwoodj/helm-docs | You will need to configure a linter_values.yaml file
     hooks:
