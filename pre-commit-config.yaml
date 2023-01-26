@@ -16,13 +16,27 @@ repos:
     -   id: ggshield
         language_version: python3
         stages: [commit]
+-   repo: https://gitlab.com/adam-moss/pre-commit-trailer
+    rev: v1.1.0 # Use the ref you want to point at
+    hooks:
+    -   id: add-pre-commit-config-trailer
+    #-   id: ...
+-   repo: .
+    rev: HEAD
+    hooks:
+        -   id: add-pre-commit-config-trailer
+        -   id: add-pre-commit-user-skipped-trailer
 # default config end
+
+# Jira
 # Jira smart commits start
 -   repo: https://github.com/radix-ai/auto-smart-commit
     rev: v1.0.2 # https://github.com/radix-ai/auto-smart-commit | pre-commit install --hook-type prepare-commit-msg
     hooks:
     -   id: auto-smart-commit
 # Jira smart commits end
+
+# IaC
 # Terraform start
 -   repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.77.0 # https://github.com/antonbabenko/pre-commit-terraform/releases
@@ -49,6 +63,8 @@ repos:
         - --hook-config=--create-file-if-not-exist=true # Boolean. true or false
         verbose: true # always show costs        args:
 # Terraform end
+
+# K8s Templating
 # Helm start
 -   repo: https://github.com/norwoodj/helm-docs
     rev: v1.11.0 # https://github.com/norwoodj/helm-docs | You will need to configure a linter_values.yaml file
@@ -63,12 +79,16 @@ repos:
             # A base filename makes it relative to each chart directory found
             - --template-files=README.md.gotmpl
 # Helm end
+
+# Typo checker
 # Codespell start
 -   repo: https://github.com/codespell-project/codespell
     rev: v2.2.2
     hooks:
     - id: codespell
 # Codespell end
+
+# Build tools
 # Maven start
 -   repo: https://github.com/ejba/pre-commit-maven
     rev: v0.3.3
@@ -78,18 +98,8 @@ repos:
     -   id: maven-spotless-apply
     # -   id: ...
 # Maven end
-# Pre-commit trailer start
--   repo: https://gitlab.com/adam-moss/pre-commit-trailer
-    rev: v1.1.0 # Use the ref you want to point at
-    hooks:
-    -   id: add-pre-commit-config-trailer
-    #-   id: ...
--   repo: .
-    rev: HEAD
-    hooks:
-        -   id: add-pre-commit-config-trailer
-        -   id: add-pre-commit-user-skipped-trailer
-# Pre-commit trailer end
+
+# Prettier code layout standard
 # Prettier start
 -   repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.0.0-alpha.4
