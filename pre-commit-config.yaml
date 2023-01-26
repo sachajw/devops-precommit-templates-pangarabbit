@@ -113,6 +113,7 @@ repos:
 # Maven end
 
 # Prettier code layout standard
+# https://prettier.io/
 # Prettier start
 -   repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.0.0-alpha.4
