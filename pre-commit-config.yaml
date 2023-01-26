@@ -1,5 +1,18 @@
-repos:
 # default config start
+%YAML 1.2
+# yaml-language-server: $schema=https://json.schemastore.org/pre-commit-config.json
+---
+default_install_hook_types:
+    - pre-commit
+    - commit-msg
+    - post-commit
+
+default_stages:
+    - commit
+
+fail_fast: true
+
+repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0 #https://pre-commit.com/
     hooks:
