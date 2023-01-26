@@ -63,3 +63,44 @@ repos:
             # A base filename makes it relative to each chart directory found
             - --template-files=README.md.gotmpl
 # Helm end
+# Codespell start
+-   repo: https://github.com/codespell-project/codespell
+    rev: v2.2.2
+    hooks:
+    - id: codespell
+# Codespell end
+# Maven start
+-   repo: https://github.com/ejba/pre-commit-maven
+    rev: v0.3.3
+    hooks:
+    -   id: maven
+        args: ['clean compile']
+    -   id: maven-spotless-apply
+    # -   id: ...
+# Maven end
+# Pre-commit trailer start
+-   repo: https://gitlab.com/adam-moss/pre-commit-trailer
+    rev: v1.1.0 # Use the ref you want to point at
+    hooks:
+    -   id: add-pre-commit-config-trailer
+    #-   id: ...
+-   repo: .
+    rev: HEAD
+    hooks:
+        -   id: add-pre-commit-config-trailer
+        -   id: add-pre-commit-user-skipped-trailer
+# Pre-commit trailer end
+# Prettier start
+-   repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0-alpha.4
+    hooks:
+    -   id: prettier
+        additional_dependencies:
+        - prettier@3.0.0-alpha.4
+        - eslint-config-prettier
+        - stylelint-config-prettier
+        - prettier-plugin-java
+        - prettier-plugin-sh
+        - prettier-plugin-toml
+        - "@prettier/plugin-xml"
+# Prettier end
