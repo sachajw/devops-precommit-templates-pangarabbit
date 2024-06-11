@@ -13,131 +13,140 @@ default_stages:
 fail_fast: true
 
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0 #https://pre-commit.com/
-    hooks:
-    -   id:  check-xml
-    -   id:  end-of-file-fixer
-    -   id:  trailing-whitespace
-    -   id:  check-json
-    -   id:  check-merge-conflict
-    -   id:  detect-aws-credentials
-        args: [--allow-missing-credentials]
--   repo: https://github.com/gitguardian/ggshield # add your api key to your .env file | GITGUARDIAN_API_KEY=
-    rev: v1.14.1 # https://docs.gitguardian.com/ggshield-docs/integrations/git-hooks/pre-commit
-    hooks:
-    -   id: ggshield
-        language_version: python3
-        stages: [commit]
--   repo: https://gitlab.com/adam-moss/pre-commit-trailer
-    rev: v1.1.0 # Use the ref you want to point at
-    hooks:
-    -   id: add-pre-commit-config-trailer
-    #-   id: ...
--   repo: .
-    rev: HEAD
-    hooks:
-        -   id: add-pre-commit-config-trailer
-        -   id: add-pre-commit-user-skipped-trailer
-# default config end
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.4.0 #https://pre-commit.com/
+      hooks:
+          - id: check-docstring-first
+          - id: check-xml
+          - id: end-of-file-fixer
+          - id: trailing-whitespace
+          - id: check-json
+          - id: check-merge-conflict
+          - id: debug-statements
+          - id: name-tests-test
+          - id: requirements-txt-fixer
+          - id: detect-aws-credentials
+            args: [--allow-missing-credentials]
+          - id: check-yaml
+            exclude: |
+                (?x)(
+                    ^system/sources/|
+                )
 
-# Jira
-# Jira smart commits start
--   repo: https://github.com/radix-ai/auto-smart-commit
-    rev: v1.0.2 # https://github.com/radix-ai/auto-smart-commit | pre-commit install --hook-type prepare-commit-msg
-    hooks:
-    -   id: auto-smart-commit
-# Jira smart commits end
+    - repo: https://github.com/gitguardian/ggshield # add your api key to your .env file | GITGUARDIAN_API_KEY=
+      rev: v1.14.1 # https://docs.gitguardian.com/ggshield-docs/integrations/git-hooks/pre-commit
+      hooks:
+          - id: ggshield
+            language_version: python3
+            stages: [commit]
+    - repo: https://gitlab.com/adam-moss/pre-commit-trailer
+      rev: v1.1.0 # Use the ref you want to point at
+      hooks:
+          - id: add-pre-commit-config-trailer
+      #-   id: ...
+    - repo: .
+      rev: HEAD
+      hooks:
+          - id: add-pre-commit-config-trailer
+          - id: add-pre-commit-user-skipped-trailer
+    # default config end
 
-# IaC
-# Terraform start
--   repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.77.0 # https://github.com/antonbabenko/pre-commit-terraform/releases
-    hooks:
-    -   id: terraform_checkov
-    -   id: terraform_docs
-    -   id: terraform_fmt
-    -   id: terraform_tflint
-    -   id: terraform_tfsec
-    -   id: terraform_validate
-    -   id: terrascan
-    -   id: tfupdate
-    -   id: infracost_breakdown
-        args:
-        - --args=--path=./
-        - --args=--format=html
-        - --args=--out-file infracost_report.html
-        - --hook-config='.totalHourlyCost|tonumber > 0.1'
-        - --hook-config='.totalHourlyCost|tonumber > 1'
-        - --hook-config='.projects[].diff.totalMonthlyCost|tonumber != 10000'
-        - --hook-config='.currency == "EUR"'
-        - --hook-config=--path-to-file=TF-README.md     # Valid UNIX path. I.e. ../TFDOC.md or docs/README.md etc.
-        - --hook-config=--add-to-existing-file=true     # Boolean. true or false
-        - --hook-config=--create-file-if-not-exist=true # Boolean. true or false
-        verbose: true # always show costs        args:
-# Terraform end
+    # Jira
+    # Jira smart commits start
+    - repo: https://github.com/radix-ai/auto-smart-commit
+      rev: v1.0.2 # https://github.com/radix-ai/auto-smart-commit | pre-commit install --hook-type prepare-commit-msg
+      hooks:
+          - id: auto-smart-commit
+    # Jira smart commits end
 
-# K8s Templating
-# Helm start
--   repo: https://github.com/norwoodj/helm-docs
-    rev: v1.11.0 # https://github.com/norwoodj/helm-docs | You will need to configure a linter_values.yaml file
-    hooks:
-    -   id: helm-docs
-        args:
-            # Chart search path
-            - --chart-search-root=.
-            # The `./` makes it relative to the chart-search-root set above
-            - --template-files=./_templates.gotmpl
-            # Repeating the flag adds this to the list, now [./_templates.gotmpl, README.md.gotmpl]
-            # A base filename makes it relative to each chart directory found
-            - --template-files=README.md.gotmpl
-# Helm end
+    # IaC
+    # Terraform start
+    - repo: https://github.com/antonbabenko/pre-commit-terraform
+      rev: v1.77.0 # https://github.com/antonbabenko/pre-commit-terraform/releases
+      hooks:
+          - id: terraform_checkov
+          - id: terraform_docs
+          - id: terraform_fmt
+          - id: terraform_tflint
+          - id: terraform_tfsec
+          - id: terraform_validate
+          - id: terrascan
+          - id: tfupdate
+          - id: infracost_breakdown
+            args:
+                - --args=--path=./
+                - --args=--format=html
+                - --args=--out-file infracost_report.html
+                - --hook-config='.totalHourlyCost|tonumber > 0.1'
+                - --hook-config='.totalHourlyCost|tonumber > 1'
+                - --hook-config='.projects[].diff.totalMonthlyCost|tonumber != 10000'
+                - --hook-config='.currency == "EUR"'
+                - --hook-config=--path-to-file=TF-README.md # Valid UNIX path. I.e. ../TFDOC.md or docs/README.md etc.
+                - --hook-config=--add-to-existing-file=true # Boolean. true or false
+                - --hook-config=--create-file-if-not-exist=true # Boolean. true or false
+            verbose: true # always show costs        args:
+    # Terraform end
 
-# Typo checker
-# Codespell start
--   repo: https://github.com/codespell-project/codespell
-    rev: v2.2.2
-    hooks:
-    - id: codespell
-# Codespell end
+    # K8s Templating
+    # Helm start
+    - repo: https://github.com/norwoodj/helm-docs
+      rev: v1.11.0 # https://github.com/norwoodj/helm-docs | You will need to configure a linter_values.yaml file
+      hooks:
+          - id: helm-docs
+            args:
+                # Chart search path
+                - --chart-search-root=.
+                # The `./` makes it relative to the chart-search-root set above
+                - --template-files=./_templates.gotmpl
+                # Repeating the flag adds this to the list, now [./_templates.gotmpl, README.md.gotmpl]
+                # A base filename makes it relative to each chart directory found
+                - --template-files=README.md.gotmpl
+    # Helm end
 
-# Build tools
-# Maven start
--   repo: https://github.com/ejba/pre-commit-maven
-    rev: v0.3.3
-    hooks:
-    -   id: maven
-        args: ['clean compile']
-    -   id: maven-spotless-apply
-    # -   id: ...
-# Maven end
+    # Typo checker
+    # Codespell start
+    - repo: https://github.com/codespell-project/codespell
+      rev: v2.2.2
+      hooks:
+          - id: codespell
+    # Codespell end
+    # Build tools
+    # Maven start
+    - repo: https://github.com/ejba/pre-commit-maven
+      rev: v0.3.3
+      hooks:
+          - id: maven
+            args: ["clean compile"]
+          - id: maven-spotless-apply
+      # -   id: ...
+    # Maven end
 
-# Prettier code layout standard
-# https://prettier.io/
-# Prettier start
--   repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.0-alpha.4
-    hooks:
-    -   id: prettier
-        additional_dependencies:
-        - prettier@3.0.0-alpha.4
-        - eslint-config-prettier
-        - stylelint-config-prettier
-        - prettier-plugin-java
-        - prettier-plugin-sh
-        - prettier-plugin-toml
-        - "@prettier/plugin-xml"
-# Prettier end
+    # Prettier code layout standard
+    # https://prettier.io/
+    # Prettier start
+    - repo: https://github.com/pre-commit/mirrors-prettier
+      rev: v3.0.0-alpha.4
+      hooks:
+          - id: prettier
+            additional_dependencies:
+                - prettier@3.0.0-alpha.4
+                - eslint-config-prettier
+                - stylelint-config-prettier
+                - prettier-plugin-java
+                - prettier-plugin-sh
+                - prettier-plugin-toml
+                - "@prettier/plugin-xml"
+    # Prettier end
 
-# MegaLinter by OX Security
-# MegaLinter start
--   repo: https://github.com/oxsecurity/megalinter
-    rev: v6.8.0 # Git tag specifying the hook, not mega-linter-runner, version
-    hooks:
-    -   id: megalinter-incremental # Faster, less thorough
-        stages:
-        - commit
-    -   id: megalinter-full # Slower, more thorough
-        stages:
-        - push
+    # MegaLinter by OX Security
+    # MegaLinter start
+    - repo: https://github.com/oxsecurity/megalinter
+      rev: v6.8.0 # Git tag specifying the hook, not mega-linter-runner, version
+      hooks:
+          - id: megalinter-incremental # Faster, less thorough
+            stages:
+                - commit
+          - id: megalinter-full # Slower, more thorough
+            stages:
+                - push
 # MegaLinter end
