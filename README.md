@@ -27,7 +27,9 @@ brew install pre-commit
 ```
 
 #### GitGuardian
-`.env` example for GitGuardian API key
+- `.env` file in the repo for scanning with the GitGuardian API key
+- Remember to add `.env` to `.gitignore`
+
 ```
 GITGUARDIAN_API_KEY=<crazy long string of numbers and letters>
 ```
