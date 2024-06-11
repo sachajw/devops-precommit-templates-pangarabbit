@@ -1,10 +1,10 @@
 - [Git Pre-commit Framework](#git-pre-commit-framework)
-      - [Aliases](#aliases)
-      - [Using homebrew](#using-homebrew)
-      - [GitGuardian](#gitguardian)
-      - [Helm Docs](#helm-docs)
+  - [Aliases](#aliases)
+  - [Using homebrew](#using-homebrew)
+  - [GitGuardian](#gitguardian)
+  - [Helm Docs](#helm-docs)
 
-# Git Pre-commit Framework
+### Git Pre-commit Framework
 - [pre-commit.com](https://pre-commit.com/)
 
 #### Aliases
