@@ -39,6 +39,15 @@ repos:
           - id: ggshield
             language_version: python3
             stages: [commit]
+    - repo: https://github.com/psf/black
+      rev: 24.4.2
+      hooks:
+          - id: black
+    - repo: https://github.com/PyCQA/isort
+      rev: 5.13.2
+      hooks:
+          - id: isort
+            args: ["--profile", "black"]
     - repo: https://gitlab.com/adam-moss/pre-commit-trailer
       rev: v1.1.0 # Use the ref you want to point at
       hooks:

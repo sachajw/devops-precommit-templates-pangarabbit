@@ -1,33 +1,35 @@
 # Git Pre-commit Framework
 - [pre-commit.com](https://pre-commit.com/)
 
-#### Installation
-- Before you can run hooks, you need to have the pre-commit package manager installed.
-#### Using pip:
+#### Aliases
 ```
-pip install pre-commit
+alias pcinstall='pre-commit install'
 ```
-- In a python project, add the following to your requirements.txt (or requirements-dev.txt):
 ```
-pre-commit
+alias pcuninstall='pre-commit uninstall'
 ```
-#### As a 0-dependency zipapp
-- locate and download the .pyz file from the github releases
-- run python pre-commit-#.#.#.pyz ... in place of pre-commit ...
+```
+alias pcall='pre-commit run --all-files'
+```
+```
+alias pcup='pre-commit autoupdate'
+```
 
 #### Using homebrew
 ```
 brew install pre-commit
 ```
-#### Using conda (via conda-forge)
-```
-conda install -c conda-forge pre-commit
-```
+
+#### GitGuardian
 `.env` example for GitGuardian API key
 ```
 GITGUARDIAN_API_KEY=<crazy long string of numbers and letters>
 ```
+
+#### Helm Docs
+
 `linter_values.yaml` example required for Helm Docs
+
 ```
 dockerRegistry: ".dkr.ecr.eu-central-1.amazonaws.com"
 accountPrefix:
