@@ -32,7 +32,7 @@ repos:
                 (?x)(
                     ^system/sources/|
                 )
-
+    # DevSecOps your code
     - repo: https://github.com/gitguardian/ggshield # add your api key to your .env file | GITGUARDIAN_API_KEY=
       rev: v1.14.1 # https://docs.gitguardian.com/ggshield-docs/integrations/git-hooks/pre-commit
       hooks:
