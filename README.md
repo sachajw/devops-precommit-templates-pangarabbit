@@ -1,44 +1,58 @@
+[Git Pre-commit Framework](#git-pre-commit-framework)
+
 - [Git Pre-commit Framework](#git-pre-commit-framework)
   - [Aliases](#aliases)
   - [Using homebrew](#using-homebrew)
   - [GitGuardian](#gitguardian)
   - [Helm Docs](#helm-docs)
+  - [KubeConform](#kubeconform)
 
 ### Git Pre-commit Framework
-- [pre-commit.com](https://pre-commit.com/)
+
+[Pre-Commit.com](https://pre-commit.com/)
 
 #### Aliases
-```
+
+```shell
 alias pcinstall='pre-commit install'
 ```
-```
+
+```shell
 alias pcuninstall='pre-commit uninstall'
 ```
-```
+
+```shell
 alias pcall='pre-commit run --all-files'
 ```
-```
+
+```shell
 alias pcup='pre-commit autoupdate'
 ```
 
 #### Using homebrew
-```
+
+```shell
 brew install pre-commit
 ```
 
 #### GitGuardian
+
+[GitGuardian](https://www.gitguardian.com/)
+
 - `.env` file in the repo for scanning with the GitGuardian API key
 - Remember to add `.env` to `.gitignore`
 
-```
+```shell
 GITGUARDIAN_API_KEY=<crazy long string of numbers and letters>
 ```
 
 #### Helm Docs
 
+[Helm Docs](https://github.com/norwoodj/helm-docs)
+
 `linter_values.yaml` example required for Helm Docs
 
-```
+```yaml
 dockerRegistry: ".dkr.ecr.eu-central-1.amazonaws.com"
 accountPrefix:
 regionShort:
@@ -76,3 +90,7 @@ filebeat:
 dynatrace:
   groupnamePrefix:
 ```
+
+#### KubeConform
+
+[KubeConform](https://github.com/yannh/kubeconform)
