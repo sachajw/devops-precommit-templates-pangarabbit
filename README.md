@@ -6,11 +6,13 @@
 - [Frigate](#frigate)
 - [GitGuardian](#gitguardian)
 - [Helm Docs](#helm-docs)
-- [KubeConform](#kubeconform)
+- [KubeConform for Helm Charts](#kubeconform-for-helm-charts)
 
 ### Git Pre-commit Framework
 
 [Pre-commit.com](https://pre-commit.com/)
+
+A framework for managing and maintaining multi-language pre-commit hooks.
 
 #### Aliases
 
@@ -40,6 +42,9 @@ brew install pre-commit
 
 [Frigate](https://frigate.readthedocs.io/en/latest/)
 
+Frigate is a tool for automatically generating documentation for your Helm charts.
+It will use the chart’s Chart.yaml and values.yaml files in order to generate the content in a markup language of your choice.
+
 ```yaml
 repos:
 - repo: https://github.com/rapidsai/frigate/
@@ -57,6 +62,8 @@ repos:
 
 [GitGuardian.com](https://www.gitguardian.com/)
 
+Take Control Of Your NHI Security. Discover all your secrets. Prioritize and remediate leaks at scale. Protect your non-human identities and reduce breach risks.
+
 - `.env` file in the repo for scanning with the GitGuardian API key
 - Remember to add `.env` to `.gitignore`
 
@@ -67,6 +74,8 @@ GITGUARDIAN_API_KEY=<crazy long string of numbers and letters>
 ### Helm Docs
 
 [Helm Docs](https://github.com/norwoodj/helm-docs)
+
+A tool for automatically generating markdown documentation for helm charts
 
 `linter_values.yaml` example required for Helm Docs
 
@@ -109,6 +118,8 @@ dynatrace:
   groupnamePrefix:
 ```
 
-### KubeConform
+### KubeConform for Helm Charts
 
-[KubeConform](https://github.com/yannh/kubeconform)
+[KubeConform for Helm Charts](https://github.com/jtyr/kubeconform-helm)
+
+This repo contains tools that allow to use kubeconform to test Helm charts in the form of Helm plugin and pre-commit hook.
