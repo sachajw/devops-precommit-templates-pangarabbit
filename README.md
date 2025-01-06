@@ -45,19 +45,6 @@ brew install pre-commit
 Frigate is a tool for automatically generating documentation for your Helm charts.
 It will use the chart’s Chart.yaml and values.yaml files in order to generate the content in a markup language of your choice.
 
-```yaml
-repos:
-- repo: https://github.com/rapidsai/frigate/
-   rev: v0.4.0 #  pre-commit autoupdate  - to keep the version up to date
-   hooks:
-      - id: frigate
-      args:
-      - --output=README.rst
-      - --format=rst
-      - --no-credits
-      - --no-deps
-```
-
 ### GitGuardian
 
 [GitGuardian.com](https://www.gitguardian.com/)
