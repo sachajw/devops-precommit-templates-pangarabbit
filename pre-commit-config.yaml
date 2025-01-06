@@ -138,3 +138,14 @@ repos:
         stages:
           - push
 # MegaLinter end
+
+# KubeConform Helm QA start
+  - repo: https://github.com/jtyr/kubeconform-helm
+    rev: v0.1.17
+    hooks:
+      - id: kubeconform-helm
+        args:
+          - --kubernetes-version=1.24.0
+          - --verbose
+          - --summary
+# KubeConform Helm QA end
