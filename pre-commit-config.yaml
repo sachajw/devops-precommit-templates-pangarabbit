@@ -52,6 +52,16 @@ repos:
           - id: ruff-format
             types_or: [python, pyi]
 
+    - repo: https://github.com/hukkin/mdformat
+      rev: 0.7.22 # Use the ref you want to point at
+      hooks:
+          - id: mdformat
+            # Optionally add plugins
+            additional_dependencies:
+                - mdformat-ruff
+                - mdformat-gfm
+                - mdformat-black
+
   # Jira
   # Jira smart commits start
   - repo: https://github.com/radix-ai/auto-smart-commit
