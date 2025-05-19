@@ -39,6 +39,19 @@ repos:
       - id: hadolint
         args: [--ignore, DL3025, --ignore, DL3018]
 
+    # Ruff linter and formatter for Python
+    - repo: https://github.com/astral-sh/ruff-pre-commit
+      # Ruff version.
+      rev: v0.11.10
+      hooks:
+          # Run the linter.
+          - id: ruff-check
+            types_or: [python, pyi]
+            args: [--fix]
+          # Run the formatter.
+          - id: ruff-format
+            types_or: [python, pyi]
+
   # Jira
   # Jira smart commits start
   - repo: https://github.com/radix-ai/auto-smart-commit
